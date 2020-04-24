@@ -3,8 +3,9 @@ package main
 
 import (
 	"fmt"
+	"os"
 
-	"github.com/koding/multiconfig"
+	"guthub.com/go-up/multiconfig"
 )
 
 type (
@@ -22,12 +23,13 @@ type (
 		Enabled           bool
 		Port              int
 		Hosts             []string
-		DBName            string
+		DBName            string `env:"SERVERCONFIG_NAME"`
 		AvailabilityRatio float64
 	}
 )
 
 func main() {
+	os.Setenv("SERVERCONFIG_NAME", "123123")
 	m := multiconfig.NewWithPath("config.toml") // supports TOML and JSON
 
 	// Get an empty struct for your configuration
@@ -44,4 +46,7 @@ func main() {
 	} else {
 		fmt.Println("Enabled field is set to false")
 	}
+
+	l := multiconfig.EnvironmentLoader{}
+	l.Load(serverConf)
 }
