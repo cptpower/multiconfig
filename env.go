@@ -65,6 +65,10 @@ func (e *EnvironmentLoader) processField(prefix string, field *structs.Field, na
 			}
 		}
 	default:
+		tag := field.Tag("env")
+		if tag != "" {
+			fieldName = tag
+		}
 		v := os.Getenv(fieldName)
 		if v == "" {
 			return nil
