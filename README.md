@@ -1,10 +1,6 @@
-# Multiconfig [![GoDoc](https://godoc.org/github.com/koding/multiconfig?status.svg)](http://godoc.org/github.com/koding/multiconfig) [![Build Status](https://travis-ci.org/koding/multiconfig.svg?branch=master)](https://travis-ci.org/koding/multiconfig)
+# Multiconfig With Env
 
-Load configuration from multiple sources. Multiconfig makes loading/parsing
-from different configuration sources an easy task. The problem with any app is
-that with time there are many options how to populate a set of configs.
-Multiconfig makes it easy by dynamically creating all necessary options.
-Checkout the example below to see it in action.
+Env by github.com/koding/multiconfig
 
 ## Features
 
@@ -21,7 +17,7 @@ Multiconfig is able to read configuration automatically based on the given struc
 ## Install
 
 ```bash
-go get github.com/koding/multiconfig
+go get github.com/go-up/multiconfig
 ```
 
 ## Usage and Examples
@@ -30,7 +26,7 @@ Lets define and struct that defines our configuration
 
 ```go
 type Server struct {
-	Name    string `required:"true"`
+	Name    string `required:"true" env:"DEFINE_NAME"`
 	Port    int    `default:"6060"`
 	Enabled bool
 	Users   []string
