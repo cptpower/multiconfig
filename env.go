@@ -117,6 +117,10 @@ func (e *EnvironmentLoader) printField(prefix string, field *structs.Field, name
 			e.printField(fieldName, field, key, smap[key])
 		}
 	default:
+		tag := field.Tag("env")
+		if tag != "" {
+			fieldName = tag
+		}
 		fmt.Println("  ", fieldName)
 	}
 }
